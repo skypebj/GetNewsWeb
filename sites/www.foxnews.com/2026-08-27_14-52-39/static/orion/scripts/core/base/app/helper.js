@@ -1,0 +1,2 @@
+/*! updated; 08-24-2026 10:40 AM **/
+Modulr.define("core.base:helper",["core.base:utils/cookie","core.base:utils/localStorage"],function(Cookie,LocalStorage){return new class{constructor(){}isWebview(key="wv"){var body=document.body,mode=new URLSearchParams(window.location.search).get("mode");return body.classList.contains("app-mode")||"app"===mode||"true"===this.getWebviewFlag(key)}getWebviewFlag(WV_FLAG_KEY){return Cookie.get(WV_FLAG_KEY)||LocalStorage.get(WV_FLAG_KEY)||null}}});

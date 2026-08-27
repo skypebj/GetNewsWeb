@@ -1,0 +1,2 @@
+/*! updated; 08-17-2026 06:34 PM **/
+((a,e,t,n)=>{var o,r;a[n]=a[n]||[],o=function(){var e={ti:"5739759"};e.q=a[n],a[n]=new UET(e),a[n].push("pageLoad")},(r=e.createElement(t)).src="//bat.bing.com/bat.js",r.async=1,r.onload=r.onreadystatechange=function(){var e=this.readyState;e&&"loaded"!==e&&"complete"!==e||(o(),r.onload=r.onreadystatechange=null)},(e=e.getElementsByTagName(t)[0]).parentNode.insertBefore(r,e)})(window,document,"script","uetq");
