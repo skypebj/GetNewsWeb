@@ -159,12 +159,19 @@
                     <a href="{{ site.url }}" class="btn btn-secondary" target="_blank">🌐 访问原站</a>
                 </div>
                 <div class="snapshot-list">
-                    {% for snapshot in site.snapshots[:20] %}
+                    <!-- 只显示最新的5条 -->
+                    {% for snapshot in site.snapshots[:5] %}
                     <div class="snapshot-item">
                         <a href="{{ snapshot.path }}" target="_blank">{{ snapshot.timestamp }}</a>
                         <span>{{ (snapshot.size / 1024)|round(1) }} KB</span>
                     </div>
                     {% endfor %}
+                    <!-- 如果总数 > 5，显示“更多”按钮（点击展开全部） -->
+                    {% if site.snapshots|length > 5 %}
+                    <div class="snapshot-item" style="border-bottom: none; justify-content: center;">
+                        <button class="toggle-btn" onclick="toggleSnapshots(this)" style="color: #1a1a2e; font-weight: bold;">▼ 更多</button>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
@@ -178,8 +185,18 @@
     <script>
         function toggleSnapshots(btn) {
             const list = btn.closest('.site-card').querySelector('.snapshot-list');
-            list.classList.toggle('open');
-            btn.textContent = list.classList.contains('open') ? '📂 收起' : `📂 历史 (${list.children.length})`;
+            // 如果点击的是“更多”按钮，则展开全部
+            if (btn.textContent.includes('更多')) {
+                // 移除只显示5条的限制，将隐藏的快照显示出来
+                const items = list.querySelectorAll('.snapshot-item');
+                // 隐藏的项（第6项及之后）本来被隐藏，因为list的max-height为0，所以全部显示即可
+                list.classList.toggle('open');
+                btn.textContent = list.classList.contains('open') ? '▲ 收起' : '▼ 更多';
+            } else {
+                // 点击的是“历史”按钮，切换全部显示
+                list.classList.toggle('open');
+                btn.textContent = list.classList.contains('open') ? '📂 收起' : `📂 历史 (${list.children.length})`;
+            }
         }
 
         function filterSites() {
