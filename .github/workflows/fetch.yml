@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write          # 允许推送
   pages: write
   id-token: write
 
@@ -18,9 +18,12 @@ jobs:
   fetch-and-deploy:
     name: Fetch all sites
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # 完整历史，便于后续提交
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -43,23 +46,36 @@ jobs:
 
       - name: Fetch all sites sequentially
         run: |
-          # 获取网站总数
           TOTAL=$(python -c "from scripts.config import SITES; print(len(SITES))")
           for i in $(seq 0 $((TOTAL-1))); do
             echo "Fetching site index $i"
             SITE_INDEX=$i python scripts/fetch_site.py
           done
 
-      - name: Generate navigation page
+      - name: Generate navigation page and archive (if needed)
         run: python scripts/generate_nav.py
+
+      # 关键步骤：将变更的 sites/ 提交到仓库
+      - name: Commit and push sites directory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sites/
+          # 如果有变更则提交，否则跳过
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update snapshots [skip ci]"
+            git push
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload Pages artifact (www directory)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: www/   # 包含 index.html, sites/, archives/
+          path: www/   # 包含导航页和 sites 副本（用于部署）
 
       - name: Deploy to GitHub Pages
         id: deployment
