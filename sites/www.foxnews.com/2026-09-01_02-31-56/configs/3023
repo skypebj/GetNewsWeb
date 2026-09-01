@@ -1,0 +1,28 @@
+"use strict";(function(){try{var record=function(name,detail){aps.get(accountId).queue.push(new CustomEvent(name,{detail}))};const accountId="3023";window._aps=window._aps||new Map;const aps=window._aps;aps.has(accountId)||aps.set(accountId,{queue:[],store:new Map}),record("_config/requestViewerCountry/define",{"code":"US"});record("analytics/sampling/set",{"rates":{"error":0.001,"status":0.0001}});record("a3pes/video/activate",{"restrictions":{"block":{"accounts":["5220","e32f1423-28bc-43ed-8ab0-5ae6b4449cf8"]}}});record("a3pes/video/activate",{"bypassCountryCheck":true,"restrictions":{"allow":{"accountTypes":["ssw"]},"block":{"accounts":["e32f1423-28bc-43ed-8ab0-5ae6b4449cf8"]}}});record("a3pes/video/activate",{"bypassCountryCheck":true,"restrictions":{"allow":{"accountTypes":["mw"],"rate":0.5},"block":{"accounts":["5220"]}}});record("idVendors/enabled/set",{"bidParameterKeys":["liveintent","captify","anonymised","unifiedid","ddb_key_638","uid","liveRamp","lightPublisherAudiences"]});record("idVendors/integration/execute",{"accountId":"3023","sourceId":"3023","countryCode":"US","vendorId":"liveRamp","allowedRegions":undefined,"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[],"defaultScript":function anonymous(
+) {
+undefined?undefined.includes("US")&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__liveRamp__ = false;}})();
+})():(!undefined||undefined&&!undefined.includes("US"))&&(function anonymous(
+) {
+(function(){if (window.apstag) {window.apstag.__liveRamp__ = false;}})();
+})()
+},"defaultPropertyId":"13258"});record("idVendors/integration/execute",{"accountId":"3023","sourceId":"3023","countryCode":"US","vendorId":"confiant","allowedRegions":undefined,"blockedRegions":undefined,"vendorLoadedSampleRate":5,"domainPrecedence":[{"hostnames":["tmz.com","akamaihd.net","foxbusiness.com","foxweather.com","amazon-aps.html","foxnews.com","edgesuite.net","toofab.com","outkick.com"],"script":function anonymous(
+) {
+undefined?undefined.includes("US")&&(function anonymous(
+) {
+window.creativeVendorLibraryLoaded = true;
+})():(!undefined||undefined&&!undefined.includes("US"))&&(function anonymous(
+) {
+window.creativeVendorLibraryLoaded = true;
+})()
+},"propertyId":"e0ABz6-ghtrsHrfc-QhUOeCMWnA"},{"hostnames":["foxsports.com"],"script":function anonymous(
+) {
+undefined?undefined.includes("US")&&(function anonymous(
+) {
+window.creativeVendorLibraryLoaded = true;
+})():(!undefined||undefined&&!undefined.includes("US"))&&(function anonymous(
+) {
+window.creativeVendorLibraryLoaded = true;
+})()
+},"propertyId":"ACPr90kwAKJvnB9Z210jfUXBA0E"}],"defaultScript":undefined,"defaultPropertyId":undefined});record("_config/config/didLoad",undefined)}catch(e){console.error(e)}})();
