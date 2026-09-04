@@ -1,0 +1,2 @@
+/*! updated; 08-27-2026 08:01 PM **/
+(()=>{(window.FNC&&window.FNC.GEO?true:false)||(e=(new Date).getTime(),document.write('<script src="https://static.foxnews.com/static/orion/scripts/core/utils/geo.js?cb='+e+'"><\/script>'));var t,e="https://static.foxnews.com/static/isa/core-app.js";try{"fts"!==((t=document.querySelector('meta[name="prism.channel"]'))&&t.content?t.content:null)||/\/core\-app\.?(fts)/.test(e)||(e=e.replace(/\/core\-app\./,"/core-app.fts."))}catch(t){}document.write('<script src="'+e+'"><\/script>')})();
