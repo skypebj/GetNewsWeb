@@ -1,0 +1,3 @@
+_ml.setFPI('3519723512223760494');_ml.syncCallback({"es":true,"ds":true});_ml.processTag({ url: 'https://securedvisit.com/sync/7242_05487?redirect=https%3A%2F%2Fml314.com%2Fcsync.ashx%3Fperson_id%3D3519723512223760494%26eid%3D94531%26fp%3D', type: 'img' });
+_ml.processTag({ url: 'https://trc.taboola.com/sg/bombora/1/cm?redirect=https://ml314.com/csync.ashx%3Ffp=<TUID>%26person_id=3519723512223760494%26eid=50077', type: 'img' });
+_ml.processTag({ url: 'https://us-u.openx.net/w/1.0/cm?id=42c6242a-808f-4528-a53e-218ee9c324f3&r=https%3A%2F%2Fml314.com%2Fcsync.ashx%3Feid%3D92690%26person_id%3D3519723512223760494%26fp%3D', type: 'img' });
