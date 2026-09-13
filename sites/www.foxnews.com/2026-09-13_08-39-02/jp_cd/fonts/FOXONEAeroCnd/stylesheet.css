@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "FOXONEAeroCnd Light";
+  src:
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-300-Light.woff")
+      format("woff"),
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-300-Light.woff2")
+      format("woff2");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FOXONEAeroCnd Regular";
+  src:
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-400-Regular.woff")
+      format("woff"),
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-400-Regular.woff2")
+      format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FOXONEAeroCnd Bold";
+  src:
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-700-Bold.woff")
+      format("woff"),
+    url("https://s3.amazonaws.com/jp_cd/fonts/FOXONEAeroCnd/FOXONEAeroCnd-700-Bold.woff2")
+      format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
