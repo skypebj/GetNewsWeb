@@ -1,0 +1,229 @@
+ (function () {
+    tp = window["tp"] || [];
+  
+    function parseForTracking(obj) {
+      const out = {};
+      for (const k in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, k)) {
+          const v = obj[k];
+          if (typeof v === 'string') out[k] = v;
+        }
+      }
+      return out;
+    }
+  
+     window.__pendingCheckout = null;
+
+    /* Checkout related */
+    /**
+     * Event properties
+     *
+     * chargeAmount - amount of purchase
+     * chargeCurrency
+     * uid
+     * email
+     * expires
+     * rid
+     * startedAt
+     * termConversionId
+     * termId
+     * promotionId
+     * token_list
+     * cookie_domain
+     * user_token
+     *
+     */
+    function onCheckoutComplete(data) {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout complete",
+        eventData: parseForTracking(data),
+      }, "*");
+      window.postMessage({ type: "CHECKOUT_COMPLETE" }, "*");
+      window.__pendingCheckout = null;
+    }
+
+    function onCheckoutExternalEvent(event) {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout external event",
+        eventData: parseForTracking(event),
+      }, "*");
+    }
+
+    function onCheckoutClose(event) {
+      window.__pendingCheckout = null;
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout close",
+        eventData: parseForTracking(event),
+      }, "*");
+    }
+
+    function onCheckoutCancel() {
+      window.__pendingCheckout = null;
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout Cancel",
+      }, "*");
+    }
+
+    function onCheckoutError() {
+      window.__pendingCheckout = null;
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout error",
+      }, "*");
+    }
+
+    function onCheckoutSubmitPayment() {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Checkout submit payment",
+      }, "*");
+    }
+
+    /* Meter callback */
+    function onMeterExpired() {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Meter expired",
+      }, "*");
+
+    }
+
+    /* Meter callback */
+    function onMeterActive() {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Meter active",
+      }, "*");
+
+    }
+
+    /* Callback executed when a user must login */
+    function onLoginRequired(event) {
+      const params = parseForTracking(event);
+
+     if (tp.externalJWT) {
+        tp.offer.startCheckout(event);
+      } else {
+        window.__pendingCheckout = event;
+        let view = "create-account";
+        if (params && params.termId === 'log-in') {
+          view = "log-in";
+        }
+        if (params && params.composerEventType === 'showTemplate') {
+          window.__pendingCheckout = null;
+          view = 'free-account';
+        }
+        // Ask React app to open its auth modal
+        window.postMessage({ type: "OPEN_AUTH_MODAL", view, eventData: params }, "*");
+      }
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Login required",
+        eventData: params,
+      }, "*");
+      return false;
+    }
+
+    /* Callback executed after a tinypassAccounts login */
+    function onLoginSuccess() {
+    }
+
+    /* Callback executed after an experience executed successfully */
+    function onExperienceExecute(event) {
+      tp.push(['setCustomVariable', 'updatedEvents', 'true']);
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Experience executed",
+        eventData: parseForTracking(event)
+      }, "*");
+    }
+
+    /* Callback executed if experience execution has been failed */
+    function onExperienceExecutionFailed(event) {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "Experience failed",
+        eventData: parseForTracking(event)
+      }, "*");
+    }
+
+    /* Callback executed if external checkout has been completed successfully */
+    function onExternalCheckoutComplete(event) {
+      window.postMessage({
+        type: "TRACK_EVENT",
+        eventName: "External checkout complete",
+        eventData: parseForTracking(event)
+      }, "*");
+    }
+
+    window.addEventListener('message', function(event) {
+      if (event.data === 'PIANO_USER_AUTHENTICATED') {
+        if (window.__pendingCheckout && window.tp.externalJWT) {
+          window.tp.offer.startCheckout(window.__pendingCheckout);
+            
+          window.postMessage({
+            type: "TRACK_EVENT",
+            eventName: "Resuming checkout after auth",
+            eventData: parseForTracking(window.__pendingCheckout)
+          }, "*");
+          window.__pendingCheckout = null;
+        }
+      }
+    });
+
+    tp.push(["setAid", '6jE6J2jZpu']);
+  	tp.push(["setCxenseSiteId", "5860773095558857623"]);
+    tp.push(["setEndpoint", 'https://buy.tinypass.com/api/v3']);
+    tp.push(["setUseTinypassAccounts", false ]);
+    tp.push(["setUsePianoIdUserProvider", false ]);
+    tp.push(["setUsePianoIdLiteUserProvider", true ]);
+
+    /* checkout related events */
+    tp.push(["addHandler", "checkoutComplete", onCheckoutComplete]);
+    tp.push(["addHandler", "checkoutClose", onCheckoutClose]);
+    tp.push(["addHandler", "checkoutCustomEvent", onCheckoutExternalEvent]);
+    tp.push(["addHandler", "checkoutCancel", onCheckoutCancel]);
+    tp.push(["addHandler", "checkoutError", onCheckoutError]);
+    tp.push(["addHandler", "checkoutSubmitPayment", onCheckoutSubmitPayment]);
+
+    /* user login events */
+    tp.push(["addHandler", "loginRequired", onLoginRequired]);
+    tp.push(["addHandler", "loginSuccess", onLoginSuccess]);
+
+    tp.push(["addHandler", "customEvent", function(event) {
+    }]);
+
+    /* meter related */
+    tp.push(["addHandler", "meterExpired", onMeterExpired]);
+    tp.push(["addHandler", "meterActive", onMeterActive]);
+
+    tp.push(["addHandler", "experienceExecute", onExperienceExecute]);
+    tp.push(["addHandler", "experienceExecutionFailed", onExperienceExecutionFailed]);
+
+    /* external checkout related events */
+    tp.push(["addHandler", "externalCheckoutComplete", onExternalCheckoutComplete]);
+
+    // Set for Apple Pay
+    tp.push(['setApplePayMerchantId', 'acct_1RwUYoCzJmt8NVke']);
+
+    let m = document.cookie.match(/(?:^|;\s*)piano_token=([^;]+)/);
+    if (m) {
+      let token = decodeURIComponent(m[1]);
+      tp.push(["setExternalJWT", token]);
+    }
+
+    tp.push(["init", function () {
+        tp.experience.init()
+    }]);
+})();
+
+
+    // do not change this section
+    // |BEGIN INCLUDE TINYPASS JS|
+    (function(src){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=src;var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})("https://cdn.tinypass.com/api/tinypass.min.js");
+    // |END   INCLUDE TINYPASS JS|
+
