@@ -1,0 +1,2 @@
+CalTimes.bindImmediate(function(){CalTimes.bindEventImmediate(function(){var a={not:["not","not",null],caseInsensitive:["ignore case","ignore case","ignore case"],compareTo:["video","1",""],requiredData:["59489","61825","72294"],comparators:["is","is","exists"]};CalTimes.data.resolve(a.requiredData,function(){a.values=Array.prototype.slice.call(arguments,0);window.CalTimes.data.checkConditions(a)&&CalTimes.ensEvent.poll("Manage.Event Trigger.tos_cv_event",["tos_cv_change_marketing"],!1,!0)})},-1,
+-1,-1,["tos_cv_change_marketing"])},-1,-1);
