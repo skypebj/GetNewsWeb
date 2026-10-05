@@ -1,1 +1,0 @@
-(function(global){global.mileRtdRuntime={getMileTargetingByAdUnit:function(){return{}},setConfig:function(){},getConfig:function(){return{}},rawFloorJson:null};})(window);

@@ -1,2 +1,0 @@
-CalTimes.bindImmediate(function(){CalTimes.bindEventImmediate(function(){var a={not:[null,null],caseInsensitive:["ignore case","ignore case"],compareTo:["gallery",""],requiredData:["59489","59376"],comparators:["is","exists"]};CalTimes.data.resolve(a.requiredData,function(){a.values=Array.prototype.slice.call(arguments,0);window.CalTimes.data.checkConditions(a)&&CalTimes.ensEvent.poll("Manage.Pulse Page Load.photo_index",["CalTimes - EDL - photo index - gallery"],!1,!0)})},-1,-1,-1,["CalTimes - EDL - photo index - gallery"])},
--1,-1);
