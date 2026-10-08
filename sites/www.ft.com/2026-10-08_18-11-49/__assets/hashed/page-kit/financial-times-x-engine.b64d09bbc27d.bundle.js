@@ -1,0 +1,2 @@
+(self.webpackChunknext_home_page=self.webpackChunknext_home_page||[]).push([[77],{9844:(e,n,o)=>{const p=o(8677),t=o(8677);e.exports.h=p.h,e.exports.render=t.render,e.exports.Component=p.Component,e.exports.Fragment=p.Fragment}}]);
+//# sourceMappingURL=financial-times-x-engine.b64d09bbc27d.bundle.js.map
