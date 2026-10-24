@@ -1,0 +1,281 @@
+
+var optidigitalSetupCore = {
+    prebidConsentManagement: {
+        cmpApi: 'iab',
+        timeout: 30000,
+        allowAuctionWithoutConsent: true,
+    },
+    prebidPriceGranularity: {
+        buckets: [{
+            max: 3,
+            min: 0,
+            increment: 0.01,
+            precision: 2
+        }, {
+            max: 8,
+            min: 3,
+            increment: 0.05,
+            precision: 2
+        }, {
+            max: 20,
+            min: 8,
+            increment: 0.5,
+            precision: 2
+        }]
+    },
+    defaultDiscount: 0.8,
+    aliasBidders: {},
+    bidders: ['criteo', 'dsptb_stackadapt', 'ix', 'rubicon', 'taboola'],
+    prebidSafeframe: {
+        status: 'enabled',
+        bidders: ['criteo', 'dsptb_stackadapt', 'ix', 'rubicon', 'taboola'],
+    },
+    biddersSetup: {
+        criteo: {
+            discount: 0.95,
+            adSlots: {
+                "desktop-boxflex-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-boxinline-1-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-boxinline-2-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-boxinline-3-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-boxinline-4-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-boxrail-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-midresponsive-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "desktop-topbanner-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "mobile-boxinline-1-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "mobile-boxinline-2-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "mobile-boxinline-3-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "mobile-boxinline-4-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+                "mobile-topbanner-taboola": {
+                    networkId: 12400,
+                    pubid: "115178"
+                },
+            },
+        },
+        dsptb_stackadapt: {
+            discount: 0.95,
+            adSlots: {
+                "desktop-boxflex-taboola": {},
+                "desktop-boxinline-1-taboola": {},
+                "desktop-boxinline-2-taboola": {},
+                "desktop-boxinline-3-taboola": {},
+                "desktop-boxinline-4-taboola": {},
+                "desktop-boxrail-taboola": {},
+                "desktop-midresponsive-taboola": {},
+                "desktop-topbanner-taboola": {},
+                "mobile-boxinline-1-taboola": {},
+                "mobile-boxinline-2-taboola": {},
+                "mobile-boxinline-3-taboola": {},
+                "mobile-boxinline-4-taboola": {},
+                "mobile-topbanner-taboola": {},
+            },
+        },
+        ix: {
+            discount: 0.95,
+            adSlots: {
+                "desktop-boxflex-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-boxinline-1-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-boxinline-2-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-boxinline-3-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-boxinline-4-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-boxrail-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-midresponsive-taboola": {
+                    siteId: "1475964"
+                },
+                "desktop-topbanner-taboola": {
+                    siteId: "1475964"
+                },
+                "mobile-boxinline-1-taboola": {
+                    siteId: "1475964"
+                },
+                "mobile-boxinline-2-taboola": {
+                    siteId: "1475964"
+                },
+                "mobile-boxinline-3-taboola": {
+                    siteId: "1475964"
+                },
+                "mobile-boxinline-4-taboola": {
+                    siteId: "1475964"
+                },
+                "mobile-topbanner-taboola": {
+                    siteId: "1475964"
+                },
+            },
+        },
+        rubicon: {
+            discount: 0.95,
+            adSlots: {
+                "desktop-boxflex-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198409
+                },
+                "desktop-boxinline-1-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198413
+                },
+                "desktop-boxinline-2-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198415
+                },
+                "desktop-boxinline-3-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198417
+                },
+                "desktop-boxinline-4-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198419
+                },
+                "desktop-boxrail-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198407
+                },
+                "desktop-midresponsive-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198411
+                },
+                "desktop-topbanner-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4197181
+                },
+                "mobile-boxinline-1-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198421
+                },
+                "mobile-boxinline-2-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198423
+                },
+                "mobile-boxinline-3-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198425
+                },
+                "mobile-boxinline-4-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198427
+                },
+                "mobile-topbanner-taboola": {
+                    accountId: 16698,
+                    siteId: 649155,
+                    zoneId: 4198421
+                },
+            },
+        },
+        taboola: {
+            discount: 0.99,
+            adSlots: {
+                "desktop-boxflex-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxflex-taboola"
+                },
+                "desktop-boxinline-1-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxinline-1-taboola"
+                },
+                "desktop-boxinline-2-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxinline-2-taboola"
+                },
+                "desktop-boxinline-3-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxinline-3-taboola"
+                },
+                "desktop-boxinline-4-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxinline-4-taboola"
+                },
+                "desktop-boxrail-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-boxrail-taboola"
+                },
+                "desktop-midresponsive-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-topbanner-taboola"
+                },
+                "desktop-topbanner-taboola": {
+                    publisherId: "2094404",
+                    tagId: "desktop-topbanner-taboola"
+                },
+                "mobile-boxinline-1-taboola": {
+                    publisherId: "2094404",
+                    tagId: "mobile-boxinline-1-taboola"
+                },
+                "mobile-boxinline-2-taboola": {
+                    publisherId: "2094404",
+                    tagId: "mobile-boxinline-2-taboola"
+                },
+                "mobile-boxinline-3-taboola": {
+                    publisherId: "2094404",
+                    tagId: "mobile-boxinline-3-taboola"
+                },
+                "mobile-boxinline-4-taboola": {
+                    publisherId: "2094404",
+                    tagId: "mobile-boxinline-4-taboola"
+                },
+                "mobile-topbanner-taboola": {
+                    publisherId: "2094404",
+                    tagId: "mobile-topbanner-taboola"
+                },
+            },
+        },
+    },
+};
